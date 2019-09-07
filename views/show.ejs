@@ -1,0 +1,105 @@
+<% include ./partials/header.ejs %>
+
+   
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('<%= found.image %>')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1><%= found.title %></h1>
+                        <span class="meta">Posted by <a href="#"> Admin</a> on <%= found.created %></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <%= found.body %>
+                    </div>
+            </div>
+        </div>
+    </article>
+
+    <form id="delete" action="/blogs/<%= found._id %>/edit" method="GET">
+        <button class="ui orange basic button">Edit</button><br>
+
+    </form>
+            <form id="delete" action="/blogs/<%= found._id %>?_method=DELETE" method="POST">
+                <button class="ui red basic button">Delete</button>
+            </form>
+    <hr>
+    <h3>Comments!!</h3>
+    <% for(var i=0;i<found.comment.length;i++) { %>
+        <h5><%= found.comment[i].author %></h5>
+        <h6><%= found.comment[i].about %></h6>
+        <p>created at:<%= found.comment[i].created.toDateString() %></p>
+     <% } %>
+    <hr>
+     <form action="/blogs/<%= found._id %>/comments" method="POST">
+    
+    <input type="text" name="author" placeholder="author"><br>
+    <input type="text" name="about" placeholder="about">
+    <button type="submit">Post</button>
+    </form>
+
+
+    <hr>
+
+    <ul class="pager">
+            <li class="">
+                <a href="/blogs/">Back &larr;</a>
+            </li>
+        </ul>
+   
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; Your Website 2016</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+   
+
+<% include ./partials/footer.ejs %>
+
+
